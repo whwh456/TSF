@@ -1,0 +1,153 @@
+task: CifarFed
+# 后门攻击的方式
+synthesizer: Baikuai
+
+# batch settings
+batch_size: 64
+test_batch_size: 100
+lr: 0.01
+# 动量
+momentum: 0.9
+# 衰减（正则化）
+decay: 0.0005
+
+epochs: 110
+# 优化器
+optimizer: SGD
+
+log_interval: 100
+scheduler: False
+
+#resume_model: model_CifarFed_Nov.26_20.32.44_no_attack_fl/model
+# multi-task settings
+loss_balance: MGDA
+mgda_normalize: none
+# save model
+save_model: True
+save_on_epochs: [300]
+log: True
+tb: True
+report_train_loss: False
+transform_train: True
+
+fl: True
+# 每轮参与聚合的参与者个数
+fl_no_models: 10
+# 本地训练批次
+fl_local_epochs: 2
+# 总参与者
+fl_total_participants: 100
+# 联邦学习的学习率
+fl_eta: 10
+# 样本是否进行狄利克雷划分非IID
+fl_sample_dirichlet: false
+# 如果是则写参数，如果否则为none
+fl_dirichlet_alpha: 0.9
+# 是否添加噪声
+fl_diff_privacy:  False
+# 噪声裁剪阈值
+fl_dp_clip: None
+
+# 同态加密
+Homomorphic_encryption: false
+# attack
+fl_number_of_adversaries: 0
+fl_single_epoch_attack: false
+fl_weight_scale: 30
+backdoor_dynamic_position: True
+poisoning_proportion: 0.5
+backdoor_label: 8
+# defence 这是自己写的
+spectre_filter: false
+ # 采样频率
+f_sample: 1000
+f_pass: 150
+f_stop: 250
+Ap: 1
+As: 20
+
+# 服务器防御-相似度计算
+# 值可取：CFSD-DP、flame|
+defense: False
+threshold: 0.99
+# 服务器防御-加噪声
+fl_diff_privacy:  true
+fl_dp_noise: 0.005
+
+# retrain:
+retrain: False
+pretrained: False
+
+loss_tasks:
+  - backdoor
+  - normal
+#  - nc_adv
+#  - ewc
+#  - latent
+#  - latent_fixed
+
+
+#poison_images_test:
+# 这些图片全部为绿色汽车
+#  - 389
+#  - 561
+#  - 874
+#  - 1605
+#5  - 3378
+#  - 3678
+#  - 4528
+#  - 9744
+#  - 19165
+#10  - 19500
+#  - 21422
+#  - 22984
+#  - 32941
+#  - 34287
+#  - 34385
+#  - 36005
+#  - 37365
+#  - 37533
+#  - 38658
+#20  - 38735
+#  - 39824
+#  - 40138
+#  - 41336
+#  - 41861
+#  - 47001
+#  - 47026
+#  - 48003
+#  - 48030
+#  - 49163
+#30  - 49588
+#
+#poison_images:
+#  - 389
+#  - 561
+#  - 874
+#  - 1605
+#  - 3378
+#  - 3678
+#  - 4528
+#  - 9744
+#  - 19165
+#  - 19500
+#  - 21422
+#  - 22984
+#  - 32941
+#  - 34287
+#  - 34385
+#  - 36005
+#  - 37365
+#  - 37533
+#  - 38658
+#  - 38735
+#  - 39824
+#  - 40138
+#  - 41336
+#  - 41861
+#  - 47001
+#  - 47026
+#  - 48003
+#  - 48030
+#  - 49163
+#  - 49588
